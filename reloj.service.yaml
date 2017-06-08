@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: reloj
+  labels:
+    name: reloj
+  namespace: meetup-devops
+spec:
+  selector:
+    name: reloj
+  ports:
+    - port: 3000
+      targetPort: 3000
+  type: LoadBalancer

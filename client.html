@@ -10,17 +10,18 @@
 <body>
     <div id="main-div"></div>
     <script>
-        var api = "";
+        var api = "http://192.168.42.115:30403";
         var records = [];
         $(document).ready(function () {
             setInterval(function () {
 
-                $.ajax({
-                    dataType: "json",
-                    url: api
-                })
-                    .done(function () {
-                        records.unshift("Success");
+                $.ajax(
+                    {
+                        url:api,
+                        timeout:500
+                    })
+                    .done(function (d) {
+                        records.unshift(d);
                     })
                     .fail(function () {
                         records.unshift("Cannot reach server");

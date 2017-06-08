@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const moment = require('moment');
 
 // Constants
 const PORT = 3000;
@@ -8,7 +9,7 @@ const PORT = 3000;
 // App
 const app = express();
 app.get('/', function (req, res) {
-  res.send('Hello world\n');
+  res.send(moment().format("hh:mm:ss A"));
 });
 
 app.listen(PORT);
