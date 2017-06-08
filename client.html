@@ -10,7 +10,39 @@
 <body>
     <div id="main-div"></div>
     <script>
+        var api = "";
+        var records = [];
+        $(document).ready(function () {
+            setInterval(function () {
 
+                $.ajax({
+                    dataType: "json",
+                    url: api
+                })
+                    .done(function () {
+                        records.unshift("Success");
+                    })
+                    .fail(function () {
+                        records.unshift("Cannot reach server");
+                    })
+                    .always(function () {
+                        while (records.length > 20) {
+                            records.pop();
+                        }
+
+                        var newDiv = $("<div>").attr({ id: "main-div" });
+
+                        for (var i = 0; i < records.length; ++i) {
+                            var s = i == 0 ? 1 : 2;
+                            s = i > 5 ? 3 : s;
+                            newDiv.append(`<h${s}>${records[i]}</h${s}>`);
+                        }
+
+                        $("#main-div").replaceWith(newDiv);
+                    });
+
+            }, 500);
+        });
     </script>
 </body>
 

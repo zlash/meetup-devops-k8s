@@ -1,6 +1,8 @@
-FROM mhart/alpine-node:base-6
+FROM node:7
 
 ADD . .
 
+RUN npm install
+
 EXPOSE 3000
-CMD ["node", "reloj.js"]
+ENTRYPOINT node reloj.js

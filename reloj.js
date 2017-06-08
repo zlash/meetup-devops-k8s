@@ -1,24 +1,15 @@
-var http = require('http');
+'use strict';
 
-function start(port) {
-    var server = http.createServer(function (request, response) {
-        var data = '';
+const express = require('express');
 
-        request.on('data', function (chunk) {
-            data += chunk;
-        });
+// Constants
+const PORT = 3000;
 
-        response.writeHead(200, { 'Content-Type': 'application/json' });
-        response.end(JSON.stringify({ hora: 'OK' }));
-    });
+// App
+const app = express();
+app.get('/', function (req, res) {
+  res.send('Hello world\n');
+});
 
-    if (port) {
-        server.listen(port);
-        console.log('Server listening.');
-    }
-
-    return server;
-};
-
-
-var server = start(3000);
+app.listen(PORT);
+console.log('Running on http://localhost:' + PORT);
