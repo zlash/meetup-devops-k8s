@@ -1,0 +1,8 @@
+#!/bin/bash
+
+TEMP_REPO=$(mktemp -u)
+
+git clone . ${TEMP_REPO}
+rsync -av --delete ${TEMP_REPO}/ docker@$(minikube ip):/data/jenkins/git
+
+rm -rf ${TEMP_REPO}
