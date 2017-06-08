@@ -63,6 +63,8 @@ items:
               volumeMounts:
                 - name: "jenkins"
                   mountPath: "/var/jenkins_home"
+                - name: "docker-socket"
+                  mountPath: "/var/run/docker.sock"
               livenessProbe:
                 httpGet:
                   path: /login
@@ -75,6 +77,9 @@ items:
             - name: "jenkins"
               hostPath:
                 path: /data/jenkins/
+            - name: "docker-socket"
+              hostPath:
+                path: /var/run/docker.sock
 
   - apiVersion: "v1"
     kind: "Service"
