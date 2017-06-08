@@ -9,7 +9,7 @@ const PORT = 3000;
 // App
 const app = express();
 app.get('/', function (req, res) {
-  res.send(moment().format("hh:mm:ss A"));
+  res.send(moment().format("HH:mm:ss"));
 });
 
 app.listen(PORT);
